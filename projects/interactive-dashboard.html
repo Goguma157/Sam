@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Data Dashboard | Samuel Park Portfolio</title>
+    <link rel="stylesheet" href="../styles.css"> 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
@@ -192,17 +193,17 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary-color);
         }
-
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <a href="/SamuelPark-DeepPortfolio/" class="logo">Samuel Park</a> <ul class="nav-links">
-                <li><a href="/SamuelPark-DeepPortfolio/#about">About</a></li>
-                <li><a href="/SamuelPark-DeepPortfolio/#skills">Skills</a></li>
-                <li><a href="/SamuelPark-DeepPortfolio/#projects">Projects</a></li>
-                <li><a href="/SamuelPark-DeepPortfolio/#contact">Contact</a></li>
+            <a href="../" class="logo">Samuel Park</a>
+            <ul class="nav-links">
+                <li><a href="../#about">About</a></li>
+                <li><a href="../#skills">Skills</a></li>
+                <li><a href="../#projects">Projects</a></li>
+                <li><a href="../#contact">Contact</a></li>
             </ul>
         </div>
     </header>
@@ -210,70 +211,57 @@
     <div class="container project-detail-section">
         <a href="../#projects" class="btn-back">&larr; Back to Projects</a>
 
-        <h1>Interactive Data Dashboard</h1>
+        <h1>Interactive Data Dashboard (STAT 380)</h1>
         <div class="tags">
             <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
             <span class="tag">Data Visualization</span>
-            <span class="tag">Actionable Insights</span>
         </div>
 
         <h2>Project Overview</h2>
-        <p>
-            As part of STAT 380, this project involved developing a dynamic and interactive data dashboard using Power BI. The primary goal was to transform raw data into a visually compelling and easily understandable format, enabling users to explore trends and derive actionable insights efficiently.
-        </p>
+        <p>This project involved developing a dynamic dashboard in Power BI to transform raw sales data into actionable business insights. The goal was to empower non-technical stakeholders to explore complex data through an intuitive, interactive interface.</p>
+        
+        <h2>Key Result: Sales Performance Dashboard</h2>
+        <p>Replace the placeholder below with a screenshot of your most impressive Power BI dashboard view.</p>
+        <img src="../images/placeholder.png" alt="Screenshot of the final Power BI sales dashboard">
 
-        <h2>Methodology</h2>
-        <ul>
-            <li>**Data Cleaning & Transformation:** Utilized Power Query Editor within Power BI to clean, transform, and prepare the raw dataset for analysis.</li>
-            <li>**Data Modeling:** Established relationships between various data tables to create a robust and scalable data model.</li>
-            <li>**DAX Measures:** Developed custom Data Analysis Expressions (DAX) to calculate key performance indicators and metrics relevant to the dataset.</li>
-            <li>**Visualization Design:** Designed and implemented various interactive charts, graphs, and tables (e.g., bar charts, line graphs, pie charts, slicers) to represent different facets of the data.</li>
-        </ul>
-
-        <h2>Key Findings & Visualizations</h2>
-        <p>
-            The dashboard successfully highlighted several critical trends and patterns. For example, a clear correlation was observed between [Specific Variable 1] and [Specific Variable 2] over time. Interactive filters allowed users to segment data by [Category, e.g., region, product type], revealing localized insights.
-        </p>
-        <p>
-            Below are some key visualizations and a brief explanation of their significance:
-        </p>
-
-        <h3>Sales Performance by Region</h3>
-        <img src="https://via.placeholder.com/800x450/1E1E1E/B3B3B3?text=Placeholder+Dashboard+Screenshot+1" alt="Dashboard Screenshot 1">
-        <p>
-            This bar chart illustrates the sales performance across different geographical regions, immediately highlighting top-performing and underperforming areas. This visual was crucial for strategic resource allocation.
-        </p>
-
-        <h3>Trend Analysis Over Time</h3>
-        <img src="https://via.placeholder.com/800x450/1E1E1E/B3B3B3?text=Placeholder+Dashboard+Screenshot+2" alt="Dashboard Screenshot 2">
-        <p>
-            A line graph demonstrating the monthly trend of a key metric, showcasing seasonal variations and the impact of specific events on overall performance.
-        </p>
-
-        <h2>Code Snippet (DAX Example)</h2>
-        <p>
-            Below is an example of a DAX measure used to calculate total sales, demonstrating the logical structure for data aggregation.
-        </p>
+        <h2>Core Logic: DAX Measures</h2>
+        <p>The dashboard's intelligence is driven by Data Analysis Expressions (DAX). Below are key measures created to analyze performance trends and growth metrics, demonstrating my ability to embed complex business logic directly into the data model.</p>
         <pre><code>
-Total Sales = SUM('Sales Data'[SalesAmount])
-Average Sales = CALCULATE(AVERAGE('Sales Data'[SalesAmount]), ALL('Sales Data'))
-Sales Growth = DIVIDE(
-    ([Total Sales] - CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))),
-    CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))
+-- This code defines key performance indicators used across the dashboard.
+
+-- Calculates Year-over-Year (YoY) sales growth percentage.
+Sales YoY Growth % = 
+VAR CurrentYearSales = [Total Sales]
+VAR PreviousYearSales = CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))
+RETURN
+    IF(
+        NOT ISBLANK(PreviousYearSales),
+        DIVIDE(CurrentYearSales - PreviousYearSales, PreviousYearSales),
+        BLANK()
+    )
+
+-- Calculates the moving average of sales over the last 30 days to smooth out daily fluctuations.
+30-Day Moving Average Sales = 
+AVERAGEX(
+    DATESINPERIOD(
+        'Calendar'[Date],
+        LASTDATE('Calendar'[Date]),
+        -30,
+        DAY
+    ),
+    [Total Sales]
 )
         </code></pre>
-        <p>
-            This snippet illustrates how complex calculations were distilled into simple measures for the dashboard, providing immediate business value.
-        </p>
 
         <h2>Conclusion & Impact</h2>
         <p>
-            The interactive dashboard provides a powerful tool for stakeholders to monitor performance, identify anomalies, and make data-driven decisions swiftly. This project honed my skills in end-to-end data visualization, from raw data to an insightful, interactive product.
+            The final dashboard enabled a <strong>360-degree view of sales performance</strong>, allowing for quick identification of top-performing regions and products. By creating calculated measures like YoY Growth, stakeholders could move beyond static numbers to understand performance trends, leading to more informed strategic decisions.
         </p>
 
         <div class="project-links-bottom">
             <a href="https://docs.google.com/document/d/1e9ZuckMOWsehHAmSppfKPm-28_5_GEdeygT9M-9T8Zc/edit?usp=sharing" target="_blank">View Original Document &rarr;</a>
-            <a href="https://github.com/goguma157/SamuelPark-DeepPortfolio" target="_blank">View GitHub Repository &rarr;</a>
+            <a href="https://github.com/your-username/your-repo-name" target="_blank">View Code on GitHub &rarr;</a>
         </div>
         <div style="text-align: center; margin-top: 3rem;">
             <a href="../#projects" class="btn-back">&larr; Back to Projects</a>
