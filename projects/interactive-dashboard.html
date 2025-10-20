@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Data Dashboard | Samuel Park Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --background-color: #121212;
+            --surface-color: #1E1E1E;
+            --primary-color: #03DAC6;
+            --primary-variant-color: #3700B3;
+            --text-color: #FFFFFF;
+            --text-secondary-color: #B3B3B3;
+            --border-color: #2c2c2c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 5rem; /* Space for fixed header */
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project-detail-section {
+            padding: 4rem 0;
+        }
+
+        .project-detail-section h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-detail-section .tags {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-detail-section .tag {
+            display: inline-block;
+            background: rgba(3, 218, 198, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-detail-section h2 {
+            font-size: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .project-detail-section h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-color);
+        }
+
+        .project-detail-section p, .project-detail-section ul {
+            font-size: 1.1rem;
+            color: var(--text-secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .project-detail-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+
+        .project-detail-section pre {
+            background: var(--surface-color);
+            color: var(--text-color);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Fira Code', 'Cascadia Code', monospace; /* For code blocks */
+            font-size: 0.9rem;
+        }
+
+        .project-detail-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+        
+        .project-links-bottom {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .project-links-bottom a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 1rem;
+        }
+        .project-links-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.6rem 1.5rem;
+            background: var(--primary-variant-color);
+            color: var(--text-color);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: #6200EE;
+        }
+
+        /* Re-using header/footer styles from main index.html for consistency */
+        header {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary-color);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary-color);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/SamuelPark-DeepPortfolio/" class="logo">Samuel Park</a> <ul class="nav-links">
+                <li><a href="/SamuelPark-DeepPortfolio/#about">About</a></li>
+                <li><a href="/SamuelPark-DeepPortfolio/#skills">Skills</a></li>
+                <li><a href="/SamuelPark-DeepPortfolio/#projects">Projects</a></li>
+                <li><a href="/SamuelPark-DeepPortfolio/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container project-detail-section">
+        <a href="../#projects" class="btn-back">&larr; Back to Projects</a>
+
+        <h1>Interactive Data Dashboard</h1>
+        <div class="tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">Data Visualization</span>
+            <span class="tag">Actionable Insights</span>
+        </div>
+
+        <h2>Project Overview</h2>
+        <p>
+            As part of STAT 380, this project involved developing a dynamic and interactive data dashboard using Power BI. The primary goal was to transform raw data into a visually compelling and easily understandable format, enabling users to explore trends and derive actionable insights efficiently.
+        </p>
+
+        <h2>Methodology</h2>
+        <ul>
+            <li>**Data Cleaning & Transformation:** Utilized Power Query Editor within Power BI to clean, transform, and prepare the raw dataset for analysis.</li>
+            <li>**Data Modeling:** Established relationships between various data tables to create a robust and scalable data model.</li>
+            <li>**DAX Measures:** Developed custom Data Analysis Expressions (DAX) to calculate key performance indicators and metrics relevant to the dataset.</li>
+            <li>**Visualization Design:** Designed and implemented various interactive charts, graphs, and tables (e.g., bar charts, line graphs, pie charts, slicers) to represent different facets of the data.</li>
+        </ul>
+
+        <h2>Key Findings & Visualizations</h2>
+        <p>
+            The dashboard successfully highlighted several critical trends and patterns. For example, a clear correlation was observed between [Specific Variable 1] and [Specific Variable 2] over time. Interactive filters allowed users to segment data by [Category, e.g., region, product type], revealing localized insights.
+        </p>
+        <p>
+            Below are some key visualizations and a brief explanation of their significance:
+        </p>
+
+        <h3>Sales Performance by Region</h3>
+        <img src="https://via.placeholder.com/800x450/1E1E1E/B3B3B3?text=Placeholder+Dashboard+Screenshot+1" alt="Dashboard Screenshot 1">
+        <p>
+            This bar chart illustrates the sales performance across different geographical regions, immediately highlighting top-performing and underperforming areas. This visual was crucial for strategic resource allocation.
+        </p>
+
+        <h3>Trend Analysis Over Time</h3>
+        <img src="https://via.placeholder.com/800x450/1E1E1E/B3B3B3?text=Placeholder+Dashboard+Screenshot+2" alt="Dashboard Screenshot 2">
+        <p>
+            A line graph demonstrating the monthly trend of a key metric, showcasing seasonal variations and the impact of specific events on overall performance.
+        </p>
+
+        <h2>Code Snippet (DAX Example)</h2>
+        <p>
+            Below is an example of a DAX measure used to calculate total sales, demonstrating the logical structure for data aggregation.
+        </p>
+        <pre><code>
+Total Sales = SUM('Sales Data'[SalesAmount])
+Average Sales = CALCULATE(AVERAGE('Sales Data'[SalesAmount]), ALL('Sales Data'))
+Sales Growth = DIVIDE(
+    ([Total Sales] - CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))),
+    CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))
+)
+        </code></pre>
+        <p>
+            This snippet illustrates how complex calculations were distilled into simple measures for the dashboard, providing immediate business value.
+        </p>
+
+        <h2>Conclusion & Impact</h2>
+        <p>
+            The interactive dashboard provides a powerful tool for stakeholders to monitor performance, identify anomalies, and make data-driven decisions swiftly. This project honed my skills in end-to-end data visualization, from raw data to an insightful, interactive product.
+        </p>
+
+        <div class="project-links-bottom">
+            <a href="https://docs.google.com/document/d/1e9ZuckMOWsehHAmSppfKPm-28_5_GEdeygT9M-9T8Zc/edit?usp=sharing" target="_blank">View Original Document &rarr;</a>
+            <a href="https://github.com/goguma157/SamuelPark-DeepPortfolio" target="_blank">View GitHub Repository &rarr;</a>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="../#projects" class="btn-back">&larr; Back to Projects</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Samuel Park. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
