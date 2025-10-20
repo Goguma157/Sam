@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Park | Data & BI Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --background-color: #121212;
+            --surface-color: #1E1E1E;
+            --primary-color: #03DAC6;
+            --primary-variant-color: #3700B3;
+            --text-color: #FFFFFF;
+            --text-secondary-color: #B3B3B3;
+            --border-color: #2c2c2c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary-color);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        .hero {
+            padding-top: 10rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--text-secondary-color);
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background: #018786;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: #000000;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        .about-content {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            background: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card .description {
+            color: var(--text-secondary-color);
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .project-card .tags {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card .tag {
+            display: inline-block;
+            background: rgba(3, 218, 198, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-content p {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary-color);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        
+        .contact-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .contact-links a {
+            margin: 0 1rem;
+            color: var(--text-secondary-color);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Samuel Park</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Samuel Park</h1>
+                <p class="tagline">Highly motivated Junior pursuing a B.S. in Statistics (4.0 GPA) with strong quantitative capabilities in R, Python, and SQL. Seeking to leverage analytical rigor and demonstrated leadership in a challenging internship role within Data/Business Intelligence.</p>
+                <div>
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p class="about-content">
+                    I am a detail-oriented Statistics student with a proven research background in data analysis and anomaly detection. My experience as a Squad Leader in the Republic of Korea Army has instilled in me a strong sense of discipline and teamwork. I am passionate about uncovering insights from data and am eager to apply my skills in a dynamic business environment.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item"><h3>R</h3></div>
+                    <div class="skill-item"><h3>Python</h3></div>
+                    <div class="skill-item"><h3>SQL</h3></div>
+                    <div class="skill-item"><h3>Power BI</h3></div>
+                    <div class="skill-item"><h3>C#</h3></div>
+                    <div class="skill-item"><h3>C++</h3></div>
+                    <div class="skill-item"><h3>Data Analysis</h3></div>
+                    <div class="skill-item"><h3>Korean (Native)</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid">
+
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Interactive Data Dashboard (STAT 380)</h3>
+                            <div class="tags">
+                                <span class="tag">Power BI</span>
+                                <span class="tag">Data Visualization</span>
+                            </div>
+                            <p class="description">Developed an interactive dashboard to analyze a dataset, focusing on creating compelling visualizations to derive actionable insights and present complex data in an accessible format.</p>
+                            <div class="project-links">
+                                <a href="https://docs.google.com/document/d/1e9ZuckMOWsehHAmSppfKPm-28_5_GEdeygT9M-9T8Zc/edit?usp=sharing" target="_blank">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>ANOVA Application (STAT 330)</h3>
+                            <div class="tags">
+                                <span class="tag">R</span>
+                                <span class="tag">ANOVA</span>
+                                <span class="tag">Hypothesis Testing</span>
+                            </div>
+                            <p class="description">Conducted an Analysis of Variance (ANOVA) test to compare means across multiple groups. This project involved forming a hypothesis, performing the statistical test in R, and interpreting the results to draw a valid conclusion.</p>
+                            <div class="project-links">
+                                <a href="https://docs.google.com/document/d/1gP0J732Y6tDXR9Yb6RQpli1MXbTf4cbwJz-aa-P4394/edit?usp=sharing" target="_blank">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Summer Research Presentation (Illinois Blackwell)</h3>
+                            <div class="tags">
+                                <span class="tag">R</span>
+                                <span class="tag">Research</span>
+                                <span class="tag">Data Analysis</span>
+                            </div>
+                            <p class="description">Participated in a competitive summer research program, culminating in a presentation that showcased data analysis methodologies, key findings, and data-driven insights derived from a complex dataset.</p>
+                            <div class="project-links">
+                                <a href="https://docs.google.com/presentation/d/1tUjMBEW1rvGn___Nkmztv_Konjoc4K0XI2UxjD4ebz0/edit?usp=sharing" target="_blank">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="project-card">
+                        <div class="project-content">
+                            <h3>Statistical Survey Analysis (STAT 310)</h3>
+                            <div class="tags">
+                                <span class="tag">R</span>
+                                <span class="tag">Survey Data</span>
+                            </div>
+                            <p class="description">Performed a comprehensive analysis of survey data. The project focused on data cleaning, descriptive statistics, and applying statistical models to identify trends and patterns within the responses.</p>
+                            <div class="project-links">
+                                <a href="https://docs.google.com/document/d/1CuJLBjiILghaOuivwCX_GyJvENzLgfXQFeVvzRVojH4/edit?usp=sharing" target="_blank">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Iowa Demographics Analysis (STAT 220)</h3>
+                            <div class="tags">
+                                <span class="tag">R</span>
+                                <span class="tag">Google Sites</span>
+                                <span class="tag">Data Visualization</span>
+                            </div>
+                            <p class="description">Created a dedicated project website to present an in-depth statistical analysis of Iowa demographic data. The site details the entire process from data sourcing and cleaning to final conclusions.</p>
+                            <div class="project-links">
+                                <a href="https://sites.google.com/truman.edu/iowa-stat220-project/home" target="_blank">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Advanced R Application (STAT 324)</h3>
+                            <div class="tags">
+                                <span class="tag">R</span>
+                                <span class="tag">Statistical Modeling</span>
+                            </div>
+                            <p class="description">An academic project focused on applying advanced programming and statistical modeling techniques in R to solve a defined analytical problem, demonstrating proficiency in the R language and its libraries.</p>
+                            <div class="project-links">
+                                <a href="https://docs.google.com/document/d/13I3ncQWwVsEzOC0raaaF3ErQDhResRh_NIszz1qfA3g/edit?usp=sharing" target="_blank">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="contact-content">
+                    I am currently seeking internship opportunities for Summer 2026 and am available for program dates from June 8th to August 7th. I'd love to discuss how my skills in data analysis and my dedication can benefit your team.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:samjpark516@gmail.com">samjpark516@gmail.com</a>
+                    <span>&bull;</span>
+                    <a href="https://www.linkedin.com/in/sameul-park-bb2208243/" target="_blank">LinkedIn</a>
+                    <span>&bull;</span>
+                    <a href="https://goguma157.github.io/Samuel-/" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Samuel Park. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
