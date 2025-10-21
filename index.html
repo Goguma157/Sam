@@ -218,6 +218,23 @@
             color: var(--text-color);
         }
         
+        .skills-category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        #skills h3.skills-category-title:first-of-type {
+            margin-top: 0;
+            border-top: none;
+            padding-top: 0;
+        }
+        
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -336,7 +353,7 @@
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <img src="images/profilee.jpg" alt="Samuel Park's headshot" class="hero-photo">
+                    <img src="images/professional-headshot.jpg" alt="Samuel Park's headshot" class="hero-photo">
                     <div class="hero-text">
                         <h1>Samuel Park</h1>
                         <p class="tagline">Highly motivated Junior pursuing a B.S. in Statistics (4.0 GPA) with strong quantitative capabilities in R, Python, and SQL. Seeking to leverage analytical rigor and demonstrated leadership in a challenging internship role within Data/Business Intelligence.</p>
@@ -361,16 +378,35 @@
         <section id="skills">
             <div class="container">
                 <h2 class="section-title">Technical Skills</h2>
+
+                <h3 class="skills-category-title">Languages & Tools</h3>
                 <div class="skills-grid">
                     <div class="skill-item"><h3>R</h3></div>
                     <div class="skill-item"><h3>Python</h3></div>
                     <div class="skill-item"><h3>SQL</h3></div>
                     <div class="skill-item"><h3>Power BI</h3></div>
-                    <div class="skill-item"><h3>C#</h3></div>
-                    <div class="skill-item"><h3>C++</h3></div>
+                    <div class="skill-item"><h3>RShiny</h3></div>
+                    <div class="skill-item"><h3>Minitab</h3></div>
+                    <div class="skill-item"><h3>Excel</h3></div>
+                    <div class="skill-item"><h3>C++ / C#</h3></div>
+                </div>
+
+                <h3 class="skills-category-title">Analysis & Visualization</h3>
+                <div class="skills-grid">
                     <div class="skill-item"><h3>Data Analysis</h3></div>
+                    <div class="skill-item"><h3>Data Cleaning</h3></div>
                     <div class="skill-item"><h3>Data Visualization</h3></div>
-                    <div class="skill-item"><h3>Korean (Native)</h3></div>
+                    <div class="skill-item"><h3>Plotly</h3></div>
+                </div>
+
+                <h3 class="skills-category-title">Statistics & Machine Learning</h3>
+                <div class="skills-grid">
+                    <div class="skill-item"><h3>Statistical Analysis</h3></div>
+                    <div class="skill-item"><h3>Linear Regression</h3></div>
+                    <div class="skill-item"><h3>ANOVA</h3></div>
+                    <div class="skill-item"><h3>Hypothesis Testing</h3></div>
+                    <div class="skill-item"><h3>Time Series Analysis</h3></div>
+                    <div class="skill-item"><h3>Random Forest</h3></div>
                 </div>
             </div>
         </section>
