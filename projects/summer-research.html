@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summer Research Presentation | Samuel Park Portfolio</title>
+    <title>Causal Inference in Earth Science | Samuel Park Portfolio</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
@@ -70,8 +70,10 @@
             margin-top: 3rem;
             margin-bottom: 1rem;
             color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
         }
-
+        
         .project-detail-section h3 {
             font-size: 1.5rem;
             margin-top: 2rem;
@@ -79,36 +81,48 @@
             color: var(--text-color);
         }
 
-        .project-detail-section p, .project-detail-section ul {
+        .project-detail-section p, .project-detail-section ul, .project-detail-section table {
             font-size: 1.1rem;
             color: var(--text-secondary-color);
             margin-bottom: 1rem;
         }
 
         .project-detail-section ul {
-            list-style-type: disc;
-            margin-left: 1.5rem;
+            list-style-position: inside;
+            padding-left: 0;
         }
-
-        .project-detail-section pre {
-            background: var(--surface-color);
-            color: var(--text-color);
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-bottom: 1.5rem;
-            font-family: 'Fira Code', 'Cascadia Code', monospace; /* For code blocks */
-            font-size: 0.9rem;
+        
+        .project-detail-section li {
+            margin-bottom: 0.5rem;
         }
 
         .project-detail-section img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             border: 1px solid var(--border-color);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
+
+        .project-detail-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .project-detail-section th, .project-detail-section td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+        }
+        .project-detail-section th {
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+        }
+
         .project-links-bottom {
             margin-top: 3rem;
             text-align: center;
@@ -125,7 +139,7 @@
 
         .btn-back {
             display: inline-block;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
             padding: 0.6rem 1.5rem;
             background: var(--primary-variant-color);
             color: var(--text-color);
@@ -139,7 +153,6 @@
             background: #6200EE;
         }
 
-        /* Re-using header/footer styles from main index.html for consistency */
         header {
             background: rgba(18, 18, 18, 0.8);
             backdrop-filter: blur(10px);
@@ -211,39 +224,103 @@
     <div class="container project-detail-section">
         <a href="../#projects" class="btn-back">&larr; Back to Projects</a>
 
-        <h1>Summer Research Presentation (Illinois Blackwell)</h1>
+        <h1>Exploring Causal Inference in Earth Science</h1>
         <div class="tags">
+            <span class="tag">Causal Inference</span>
+            <span class="tag">Time Series Analysis</span>
             <span class="tag">R</span>
-            <span class="tag">Research</span>
-            <span class="tag">Data Analysis</span>
-            <span class="tag">Presentation</span>
+            <span class="tag">Earth Science</span>
+            <span class="tag">Data Visualization</span>
         </div>
 
         <h2>Project Overview</h2>
         <p>
-            As a participant in the competitive Illinois Blackwell Summer Scholars Program, I conducted research that culminated in a formal presentation. The project involved a deep dive into a complex dataset to extract meaningful insights, followed by the challenge of communicating these technical findings to a diverse audience.
+            This research, conducted as part of the Illinois Blackwell Summer Scholars Program, explores the causal relationships between global climate drivers and local drought conditions. The central goal was to move beyond simple correlation and identify whether specific climate phenomena directly cause changes in drought patterns in Urbana, Illinois. Causal inference is critical in this context, as it helps answer the "why" behind observed events, distinguishing true cause-and-effect links from mere statistical associations.
         </p>
 
-        <h2>Methodology</h2>
+        <h2>Data & Variables</h2>
+        <p>
+            The analysis used monthly time-series data from 1950 to 2021. The key variables included:
+        </p>
         <ul>
-            <li>**Literature Review:** Began with a thorough review of existing research to establish context and formulate a research question.</li>
-            <li>**Data Exploration & Analysis:** Used R and its libraries (like `dplyr` and `ggplot2`) to explore, clean, and analyze the dataset.</li>
-            <li>**Insight Synthesis:** Identified key trends, correlations, and anomalies, synthesizing them into a coherent narrative.</li>
-            <li>**Presentation Development:** Crafted a presentation that balanced technical rigor with clear, accessible visualizations and explanations for a broad audience.</li>
+            <li><b>SPEI (Drought Index):</b> The primary variable of interest, measuring drought conditions in Urbana, Illinois.</li>
+            <li><b>NAO (North Atlantic Oscillation):</b> Measures atmospheric pressure differences over the North Atlantic.</li>
+            <li><b>ONI (Oceanic Niño Index):</b> Evaluates the El Niño-Southern Oscillation (ENSO) in the Pacific.</li>
+            <li><b>PDO (Pacific Decadal Oscillation):</b> Tracks long-term climate variability in the Pacific Ocean.</li>
+            <li><b>AMO (Atlantic Multi-decadal Oscillation):</b> A cycle impacting sea surface temperatures in the North Atlantic.</li>
         </ul>
 
-        <h2>Key Visualization Example</h2>
-        <p>A central part of the presentation was visualizing complex relationships. Below is a placeholder for a key chart that was presented.</p>
-        <img src="https://via.placeholder.com/800x450/1E1E1E/B3B3B3?text=Placeholder+Research+Graph" alt="Research Presentation Graph">
-        <p>This chart effectively demonstrated [describe what the chart showed, e.g., the non-linear relationship between two key variables], which was a cornerstone of the research findings.</p>
+        <h2>Methodology</h2>
+        <p>A three-step methodology was employed to analyze the complex time-series data:</p>
+        <ul>
+            <li><b>1. Data Smoothing:</b> A moving average filter was applied to the raw data to reduce noise and reveal underlying trends that were otherwise difficult to identify.</li>
+            <li><b>2. Correlation Analysis:</b> Cross-Correlation (CCF) was used to measure the linear relationship and time lags between the climate drivers and the drought index. We focused on negative lags to see how a driver might influence drought after a delay.</li>
+            <li><b>3. Causal Inference:</b> Convergent Cross Mapping (CCM), a method from Empirical Dynamic Models, was used to test for causality. CCM determines if one variable's history can reliably estimate another's state, which indicates a causal link if predictability increases with more data.</li>
+        </ul>
+
+        <h2>Results & Analysis</h2>
+        <h3>Cross-Correlation Findings</h3>
+        <p>
+            CCF analysis identified statistically significant correlations between the drivers and the SPEI drought index at specific time lags. Although the correlation coefficients appear low, their statistical significance confirmed a relationship worth investigating for causality.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Driver</th>
+                    <th>Lag (Months)</th>
+                    <th>Correlation Coefficient (CC)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>NAO</td>
+                    <td>-22</td>
+                    <td>0.237</td>
+                </tr>
+                <tr>
+                    <td>ONI</td>
+                    <td>-25</td>
+                    <td>-0.091</td>
+                </tr>
+                <tr>
+                    <td>PDO</td>
+                    <td>-26</td>
+                    <td>-0.096</td>
+                </tr>
+                 <tr>
+                    <td>AMO</td>
+                    <td>-8</td>
+                    <td>-0.116</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Causal Inference with CCM</h3>
+        <p>The CCM analysis provided much clearer insights into the direction of these relationships.</p>
+        
+        <img src="../images/NAO to SPEI.jpg" alt="CCM plot for NAO and SPEI">
+        <p><b>NAO → SPEI:</b> The results show a clear, one-way causal influence from NAO to SPEI. The reverse relationship (SPEI to NAO) showed no prediction skill.</p>
+
+        <img src="../images/AMO to SPEI.jpg" alt="CCM plot for AMO and SPEI">
+        <p><b>AMO → SPEI:</b> This was the most well-defined graph, demonstrating a unidirectional causal relationship from AMO to SPEI, though the link remains weak.</p>
+        
+        <img src="../images/PDO to SPEI.jpg" alt="CCM plot for PDO and SPEI">
+        <p><b>PDO → SPEI:</b> A unidirectional relationship from PDO to SPEI was also detected, but the connection is weak.</p>
+        
+        <img src="../images/ONI to SPEI.jpg" alt="CCM plot for ONI and SPEI">
+        <p><b>ONI & SPEI:</b> The CCM plot for ONI did not show convergence, meaning a causal trend could not be determined from this analysis.</p>
+
 
         <h2>Conclusion & Impact</h2>
         <p>
-            This experience was invaluable in developing my end-to-end research skills, from initial data exploration to final presentation. It emphasized the importance of not only finding the story within the data but also telling that story in a compelling way. The program provided a platform to engage with faculty and peers, contributing to a collaborative research environment.
+            This research concludes that the <b>North Atlantic Oscillation (NAO)</b>, <b>Atlantic Multi-decadal Oscillation (AMO)</b>, and <b>Pacific Decadal Oscillation (PDO)</b> have a causal influence on drought conditions (SPEI) in Urbana, Illinois. It highlights that while standard cross-correlation can identify significant relationships, advanced methods like CCM are necessary to determine the direction of causality.
+        </p>
+        <p>
+            These findings have significant practical applications, particularly for developing predictive machine learning models to forecast drought. Such a tool could be invaluable for agriculture, allowing farmers to prepare for and mitigate the effects of drought.
         </p>
 
         <div class="project-links-bottom">
-            <a href="https://docs.google.com/presentation/d/1tUjMBEW1rvGn___Nkmztv_Konjoc4K0XI2UxjD4ebz0/edit?usp=sharing" target="_blank">View Original Presentation &rarr;</a>
+            <a href="../pdf/Summer Research.pdf" target="_blank">View Original Presentation &rarr;</a>
         </div>
         <div style="text-align: center; margin-top: 3rem;">
             <a href="../#projects" class="btn-back">&larr; Back to Projects</a>
