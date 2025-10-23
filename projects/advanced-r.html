@@ -211,61 +211,98 @@
     <div class="container project-detail-section">
         <a href="../#projects" class="btn-back">&larr; Back to Projects</a>
 
-        <h1>Advanced R Application (STAT 324)</h1>
+        <h1>Data Visualization Critique & Redesign (STAT 324)</h1>
         <div class="tags">
             <span class="tag">R</span>
-            <span class="tag">Statistical Modeling</span>
-            <span class="tag">Advanced Programming</span>
+            <span class="tag">ggplot2</span>
+            <span class="tag">Data Visualization</span>
+            <span class="tag">Statistical Critique</span>
         </div>
 
         <h2>Project Overview</h2>
         <p>
-            This capstone project for STAT 324 was designed to demonstrate proficiency in advanced R programming and statistical modeling. The task was to select a dataset, define a complex analytical problem, and apply sophisticated techniques in R to arrive at a solution. This project showcased the ability to go beyond basic analysis and implement more intricate models.
+            This project was a comprehensive exercise in **data visualization principles**, focusing on **William Playfair’s historical chart**, *"Extent, Population, and Revenues of the Principal Nations in Europe."* The objective was twofold: to **critique the original graphic's effectiveness** and to **re-design and re-code** the visualization using **R and <code>ggplot2</code>** to enhance clarity, precision, and adherence to modern design principles.
+        </p>
+        <p>
+            The re-design centered on correcting the perceptual flaws of the original chart, specifically replacing area-based encoding with length-based encoding, which is perceptually superior for quantitative comparison.
         </p>
 
-        <h2>Methodology</h2>
+        <h2>Methodology and Re-design Principles</h2>
         <ul>
-            <li>**Problem Definition:** Identified a suitable dataset and formulated a specific, non-trivial research question that required advanced modeling.</li>
-            <li>**Advanced Modeling:** Implemented a statistical model appropriate for the problem, such as [mention a potential model, e.g., multiple linear regression, logistic regression, or time series analysis].</li>
-            <li>**Function Writing:** Wrote custom functions in R to streamline repetitive tasks and make the code more efficient and readable.</li>
-            <li>**Model Validation:** Performed diagnostic checks to validate the model's assumptions and assess its performance.</li>
+            <li>**Critique:** Identified the original chart's strengths (hierarchy, color contrast) and major flaws (inaccurate comparison due to using **circle area** to represent 'Extent').</li>
+            <li>**Aesthetic Mapping:** Replaced the low-precision circle area with **bar length (height)** for all three variables (Extent, Population, and Taxation) to maximize accuracy.</li>
+            <li>**Scaling:** Applied a **pseudo-log transformation** to the Extent (Area) data to manage the wide range of values effectively, ensuring both large and small countries were visible and comparable.</li>
+            <li>**Execution:** Used **R** with the **<code>tidyverse</code>** and **<code>ggplot2</code>** packages to execute the full re-coding and design.</li>
         </ul>
 
-        <h2>Code Snippet (R)</h2>
+        <h2>Code Snippet: Redesign Implementation (R/ggplot2)</h2>
         <p>
-            An example of a custom function written for this project is shown below. This function was created to automate the process of checking model residuals for normality.
+            The core of the re-design involved mapping all three variables to height and utilizing a non-linear scale for the area data.
         </p>
         <pre><code>
-# Custom function to check normality of residuals
-check_normality <- function(model) {
-  residuals <- residuals(model)
-  
-  # Shapiro-Wilk test for normality
-  shapiro_test <- shapiro.test(residuals)
-  
-  # Q-Q plot
-  qqnorm(residuals)
-  qqline(residuals, col = "#03DAC6")
-  
-  return(shapiro_test)
-}
+library(tidyverse)
+library(scales) 
 
-# Example usage:
-# model <- lm(y ~ x1 + x2, data = my_data)
-# normality_results <- check_normality(model)
-# print(normality_results)
+europe <- read.csv("playfair_european_nations.csv")
+europe$Country <- fct_reorder(europe$Country, europe$Area, .desc = TRUE)
+
+# Scaling Area data and applying pseudo-log transformation on the y-axis
+europe <- europe %>%
+  mutate(Area_scaled = Area / 10)
+
+ggplot(europe) +
+  # 1. Main Bar for Extent (Area_scaled)
+  geom_rect(aes(xmin = as.numeric(Country) * 8 - 2.5,
+                xmax = as.numeric(Country) * 8 + 2.5,
+                ymin = 0, 
+                ymax = Area_scaled,
+                fill = as.factor(Power)),
+            color = "black", alpha = 0.7) +
+  
+  # 2. Left Bar for Population (Red)
+  geom_rect(aes(xmin = as.numeric(Country) * 8 - 2.0,
+                xmax = as.numeric(Country) * 8 - 1.0,
+                ymin = 0, 
+                ymax = Population),
+            fill = "red") +
+            
+  # 3. Right Bar for Taxation (Goldenrod)
+  geom_rect(aes(xmin = as.numeric(Country) * 8 + 1.0,
+                xmax = as.numeric(Country) * 8 + 2.0,
+                ymin = 0, 
+                ymax = Taxation),
+            fill = "goldenrod") +
+  
+  # 4. Dotted connecting segment for Population vs. Taxation
+  geom_segment(aes(x = as.numeric(Country) * 8 - 1.5, 
+                   xend = as.numeric(Country) * 8 + 1.5,
+                   y = Population, yend = Taxation),
+               color = "black", linetype = "dotted") +
+
+  # Set scales and themes for clear communication
+  scale_y_continuous(trans = pseudo_log_trans(sigma = 1),
+                     labels = label_scientific()) +
+  scale_x_continuous(breaks = (1:12) * 8, labels = europe$Country) +
+  labs(title = "Redesigned Chart of European Nations (Length-based Encoding)",
+       x = "Name of Countries", 
+       y = "Extent (Pseudo-log Scale)", 
+       fill = "Relative Power") +
+  theme_minimal() 
         </code></pre>
         
         <h2>Conclusion & Impact</h2>
         <p>
-            Successfully applying an advanced statistical model and developing custom functions in R demonstrated a deeper mastery of the language and its analytical capabilities. This project proved my ability to handle complex data challenges from start to finish, including problem formulation, model implementation, and validation.
+            The redesigned chart successfully rectified the perceptual flaws of the original, demonstrating the principle that **length (bar height) is a superior aesthetic mapping to area (circle size)** for comparing quantitative values. By utilizing consistent spacing, clear color separation, and a pseudo-log scale, the visualization offers a precise and highly interpretable view of the data.
+        </p>
+        <p>
+            **Significance:** The new visualization clearly supports Playfair’s historical argument that **England was taxed more heavily than other European nations** by allowing for a precise comparison of the Population and Taxation bars across all countries. This project showcases advanced R coding skills and a deep understanding of effective data visualization theory.
         </p>
 
         <div class="project-links-bottom">
-            <a href="https://docs.google.com/document/d/13I3ncQWwVsEzOC0raaaF3ErQDhResRh_NIszz1qfA3g/edit?usp=sharing" target="_blank">View Original Document &rarr;</a>
+            <a href="[LINK TO ORIGINAL PROJECT DOCUMENT]" target="_blank">View Original Document &rarr;</a>
         </div>
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="../#projects" class="btn-back">&larr; Back to Projects</a>
+            <a href="../projects/Advanced-R (1).pdf" class="btn-back">&larr; Back to Projects</a>
         </div>
     </div>
     
