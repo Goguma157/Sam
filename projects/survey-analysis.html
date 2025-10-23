@@ -255,26 +255,6 @@
             <li><strong>Data Visualization:</strong> Utilized <code>ggplot2</code> in R to create **histograms, bar charts, and interval plots** to visually represent response distributions and bivariate relationships.</li>
             <li><strong>Inferential Analysis:</strong> Employed **t-tests and ANOVA** to measure statistical significance ($p$-values) and formally test hypotheses regarding student satisfaction.</li>
         </ul>
-
-        <h2>Code Snippet (R)</h2>
-        <p>
-            A key part of the inferential analysis was visualizing the mean satisfaction score and its 95% confidence interval across various service aspects, as demonstrated by the Interval Plot. The underlying R code used to generate a distribution plot for a categorical variable is shown below.
-        </p>
-        <pre><code>
-# Load the ggplot2 library
-library(ggplot2)
-
-# Create a bar chart for a categorical variable (e.g., Office Visit Frequency)
-ggplot(survey_data, aes(x = factor(office_visited))) +
-  geom_bar(fill = "#03DAC6", color = "#121212") +
-  labs(title = "Distribution of Office Visit Frequency",
-       x = "Office Visited (Yes/No)",
-       y = "Number of Respondents") +
-  theme_minimal()
-        </code></pre>
-        <p>
-            *Note: The project utilized specialized R packages for generating the Interval Plots shown in the full documentation.*
-        </p>
         
         <h2>Key Findings and Impact</h2>
         <ul>
